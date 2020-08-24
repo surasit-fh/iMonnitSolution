@@ -18,7 +18,7 @@ namespace iMonnitAPIs.Process
 
         public WebHookControlResponse AttemptsProcess(AttemptInfo attemptInfo)
         {
-            LogHelper log = new LogHelper("iMonnitLogs\\Trace\\Incoming\\");
+            LogHelper log = new LogHelper("iMonnitLogs/Trace/Incoming/");
             StringBuilder sb = new StringBuilder();
 
             try
