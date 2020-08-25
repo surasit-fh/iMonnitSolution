@@ -88,15 +88,15 @@ namespace iMonnitAPIs.Helpers.Logs
             int min = DateTime.Now.Minute;
 
             if (min <= 15)
-                fileName = String.Format("{0}{1}.{2}", ymd, "00", _extension);
+                fileName = string.Format("{0}{1}.{2}", ymd, "00", _extension);
             else if (min > 15 && min <= 30)
-                fileName = String.Format("{0}{1}.{2}", ymd, "15", _extension);
+                fileName = string.Format("{0}{1}.{2}", ymd, "15", _extension);
             else if (min > 30 && min <= 45)
-                fileName = String.Format("{0}{1}.{2}", ymd, "30", _extension);
+                fileName = string.Format("{0}{1}.{2}", ymd, "30", _extension);
             else if (min > 45)
-                fileName = String.Format("{0}{1}.{2}", ymd, "45", _extension);
+                fileName = string.Format("{0}{1}.{2}", ymd, "45", _extension);
             else
-                fileName = String.Format("{0}{1}", ymd, "00");
+                fileName = string.Format("{0}{1}", ymd, "00");
 
             string filePath = dirPath + fileName;
             StreamWriter ssw = null;
@@ -108,10 +108,8 @@ namespace iMonnitAPIs.Helpers.Logs
                 ssw = new StreamWriter(fs, new System.Text.UTF8Encoding(false));
                 ssw.AutoFlush = true;
                 sw = TextWriter.Synchronized(ssw);
-
                 sw.Write(_msg);
                 sw.Flush();
-                sw.Close();
             }
             catch (Exception)
             {
@@ -124,8 +122,6 @@ namespace iMonnitAPIs.Helpers.Logs
                     sw = TextWriter.Synchronized(ssw);
                     sw.Write(_msg);
                     sw.Flush();
-                    sw.Close();
-                    ssw.Close();
                 }
                 catch (Exception ex)
                 {
@@ -153,28 +149,28 @@ namespace iMonnitAPIs.Helpers.Logs
             string dirPath;
 
             if (fo == FolderOption.Year)
-                dirPath = String.Format(@"{0}\{1}\", logPath, y);   // ex., "..\log\2004\
+                dirPath = string.Format(@"{0}/{1}/", logPath, y);
             else if (fo == FolderOption.Month)
-                dirPath = String.Format(@"{0}\{1}\{2}\", logPath, y, ym);
+                dirPath = string.Format(@"{0}/{1}/{2}/", logPath, y, ym);
             else if (fo == FolderOption.Date)
-                dirPath = String.Format(@"{0}\{1}\{2}\{3}\", logPath, y, ym, ymd);
+                dirPath = string.Format(@"{0}/{1}/{2}/{3}/", logPath, y, ym, ymd);
             else if (fo == FolderOption.Hour)
-                dirPath = String.Format(@"{0}\{1}\{2}\{3}\{4}\", logPath, y, ym, ymd, ymdh.Substring(0, 3) + "0");
+                dirPath = string.Format(@"{0}/{1}/{2}/{3}/{4}/", logPath, y, ym, ymd, ymdh.Substring(0, 3) + "0");
             else if (fo == FolderOption.Quater)
             {
                 if (min <= 15)
-                    dirPath = String.Format(@"{0}\{1}\{2}\{3}\{4}\", logPath, y, ym, ymd, "00");
+                    dirPath = string.Format(@"{0}/{1}/{2}/{3}/{4}/", logPath, y, ym, ymd, "00");
                 else if (min > 15 && min <= 30)
-                    dirPath = String.Format(@"{0}\{1}\{2}\{3}\{4}\", logPath, y, ym, ymd, "15");
+                    dirPath = string.Format(@"{0}/{1}/{2}/{3}/{4}/", logPath, y, ym, ymd, "15");
                 else if (min > 30 && min <= 45)
-                    dirPath = String.Format(@"{0}\{1}\{2}\{3}\{4}\", logPath, y, ym, ymd, "30");
+                    dirPath = string.Format(@"{0}/{1}/{2}/{3}/{4}/", logPath, y, ym, ymd, "30");
                 else if (min > 45)
-                    dirPath = String.Format(@"{0}\{1}\{2}\{3}\{4}\", logPath, y, ym, ymd, "45");
+                    dirPath = string.Format(@"{0}/{1}/{2}/{3}/{4}/", logPath, y, ym, ymd, "45");
                 else
-                    dirPath = String.Format(@"{0}\{1}\{2}\{3}\{4}\", logPath, y, ym, ymd, "00");
+                    dirPath = string.Format(@"{0}/{1}/{2}/{3}/{4}/", logPath, y, ym, ymd, "00");
             }
             else
-                dirPath = logPath + @"\";
+                dirPath = logPath + @"/";
 
             return dirPath;
         }
