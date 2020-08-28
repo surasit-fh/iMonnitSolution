@@ -1,0 +1,13 @@
+version: '3'
+services:
+  imonnit_api:
+    container_name: imonnit_container
+    image: imonnit_api_img:1.0.0
+    build:
+      context: ./Publish/
+      dockerfile: imonnit_api_dockerfile
+    ports:
+      - "4000:80"
+    volumes:
+      - "/home/server/iMonnitSolution/iMonnitAPIs/iMonnitLogs/:/usr/src/iMonnitLogs/"
+    restart: on-failure
